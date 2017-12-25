@@ -16,7 +16,7 @@ mouse_cursor = pygame.image.load(mouse_image_filename).convert_alpha()
 
 while True:
     for event in pygame.event.get():
-        if event.type = QUIT:
+        if event.type == QUIT:
             exit()
 
     screen.blit(background, (0, 0))
