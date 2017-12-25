@@ -8,7 +8,7 @@ background_image_filename = 'sushiplate.jpg'
 mouse_image_filename = 'fugu.png'
 
 pygame.init()
-screen = pygame.display.set_mode((640, 480), 0, 32)
+screen = pygame.display.set_mode([640, 480])
 pygame.display.set_caption('Hello, World!')
 
 background = pygame.image.load(background_image_filename).convert()
