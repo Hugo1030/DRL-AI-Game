@@ -7,7 +7,7 @@ WHITE = (0xff, 0xff, 0xff)
 BLACK = (0, 0, 0)
 GREEN = (0, 0xff, 0)
 RED = (0xff, 0, 0)
-LINE_COLOR = (0x33, 0x33, 0x33)
+LINE_COLOR = (0x33, 0x33, 0x33) # gray -80%
 
 D_LEFT, D_RIGHT, D_UP, D_DOWN = 0, 1, 2, 3
 
@@ -15,7 +15,7 @@ pygame.init()
 
 WIDTH, HEIGHT = 500, 500
 CUBE_WIDTH = 20
-GRID_WIDTH_NUM, GRID_HEIGHT_NUM = WIDTH / CUBE_WIDTH, HEIGHT / CUBE_WIDTH
+GRID_WIDTH_NUM, GRID_HEIGHT_NUM = int(WIDTH / CUBE_WIDTH), int(HEIGHT / CUBE_WIDTH)
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("GreedySnake")
@@ -42,4 +42,15 @@ def draw_grids():
         pygame.draw.line(screen, LINE_COLOR,
                          (0, i * CUBE_WIDTH), (WIDTH, i * CUBE_WIDTH))
 
+def draw_body():
+    for sb in snake_body:
+        pygame.draw.rect(screen, WHITE, (sb[0], sb[1], CUBE_WIDTH, CUBE_WIDTH))
 
+    # chage head red
+    pygame.draw.rect(screen, RED,
+                     (snake_body[0][0],
+                      snake_body[0][1],
+                      CUBE_WIDTH,
+                      CUBE_WIDTH))
+
+draw_body()
