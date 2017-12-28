@@ -3,7 +3,7 @@
 import random, sys, time, pygame
 from pygame.locals import *
 
-FPS = 20 # 屏幕刷新率（在这里相当于贪吃蛇的速度）
+FPS = 10 # 屏幕刷新率（在这里相当于贪吃蛇的速度）
 WINDOWWIDTH = 640 # 屏幕宽度
 WINDOWHEIGHT = 480 # 屏幕高度
 CELLSIZE = 20 # 小方格的大小
@@ -174,7 +174,7 @@ def showStartScreen():
 
     titleFont = pygame.font.SysFont('PAPYRUS.ttf', 100)
 
-    titleSurf = titleFont.render('Wormy!', True, GREEN)
+    titleSurf = titleFont.render('GreedySnake!', True, GREEN)
 
     titleRect = titleSurf.get_rect()
     titleRect.center = (WINDOWWIDTH / 2, WINDOWHEIGHT / 2)
@@ -202,7 +202,7 @@ def getRandomLocation():
 
 # 显示游戏结束画面
 def showGameOverScreen():
-    gameOverFont = pygame.font.Font('PAPYRUS.ttf', 50)
+    gameOverFont = pygame.font.SysFont('PAPYRUS.ttf', 50)
     gameSurf = gameOverFont.render('Game', True, WHITE)
     overSurf = gameOverFont.render('Over', True, WHITE)
     gameRect = gameSurf.get_rect()
