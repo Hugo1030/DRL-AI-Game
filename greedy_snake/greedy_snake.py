@@ -57,7 +57,7 @@ food_pos = None
 
 def generate_food():
     return (random.randint(0, GRID_WIDTH_NUM - 1),
-            random.randint(0, GRID_HEIGHT_NUM -1))
+            random.randint(0, GRID_HEIGHT_NUM - 1))
 
 def draw_food():
     pygame.draw.rect(screen, GREEN,
@@ -72,7 +72,6 @@ def grow():
 
 # create a food
 food_pos = generate_food()
-print(food_pos)
 draw_food()
 
 while running:
@@ -96,7 +95,7 @@ while running:
         last_pos = snake_body[-1]
 
         # refresh the body pos
-        for i in range(len(snake_body) -1, 0, -1):
+        for i in range(len(snake_body) - 1, 0, -1):
             snake_body[i] = snake_body[i - 1]
 
         # change the head pos
@@ -125,8 +124,8 @@ while running:
 
     screen.fill(BLACK)
     draw_grids()
-
     draw_body()
+    draw_food()
     counter += 1
     pygame.display.update()
 
