@@ -70,4 +70,65 @@ def grow():
         return True
     return False
 
+# create a food
+food_pos = generate_food()
+print(food_pos)
+draw_food()
+
+while running:
+    clock.tick(FPS)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP:
+                direction = D_UP
+            elif event.key == pygame.K_DOWN:
+                direction = D_DOWN
+            elif event.key == pygame.K_LEFT:
+                direction = D_LEFT
+            elif event.key == pygame.K_RIGHT:
+                direction = D_RIGHT
+
+    # mvoe the pos
+    if counter % int(FPS / 12) == 0:
+        last_pos = snake_body[-1]
+
+        # refresh the body pos
+        for i in range(len(snake_body) -1, 0, -1):
+            snake_body[i] = snake_body[i - 1]
+
+        # change the head pos
+        if direction == D_UP:
+            snake_body[0] = (
+                snake_body[0][0],
+                snake_body[0][1] - CUBE_WIDTH)
+        elif direction == D_DOWN:
+            snake_body[0] = (
+                snake_body[0][0],
+                snake_body[0][1] + CUBE_WIDTH)
+        elif direction == D_LEFT:
+            snake_body[0] = (
+                snake_body[0][0] - CUBE_WIDTH,
+                snake_body[0][1])
+        elif direction == D_RIGHT:
+            snake_body[0] = (
+                snake_body[0][0] + CUBE_WIDTH,
+                snake_body[0][1])
+
+        # eat food and create new food
+        got_food = grow()
+        if got_food:
+            food_pos = generate_food()
+            snake_body.append(last_pos)
+
+    screen.fill(BLACK)
+    draw_grids()
+
+    draw_body()
+    counter += 1
+    pygame.display.update()
+
+pygame.quit()
 
