@@ -32,3 +32,14 @@ direction = D_LEFT
 snake_body = []
 snake_body.append((int(GRID_WIDTH_NUM / 2) * CUBE_WIDTH,
                    int(GRID_HEIGHT_NUM / 2) * CUBE_WIDTH))
+
+def draw_grids():
+    for i in range(GRID_WIDTH_NUM):
+        pygame.draw.line(screen, LINE_COLOR,
+                         (i * CUBE_WIDTH, 0), (i * CUBE_WIDTH, HEIGHT))
+
+    for i in range(GRID_HEIGHT_NUM):
+        pygame.draw.line(screen, LINE_COLOR,
+                         (0, i * CUBE_WIDTH), (WIDTH, i * CUBE_WIDTH))
+
+
