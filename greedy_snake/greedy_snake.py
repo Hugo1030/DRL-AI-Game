@@ -53,4 +53,21 @@ def draw_body():
                       CUBE_WIDTH,
                       CUBE_WIDTH))
 
-draw_body()
+food_pos = None
+
+def generate_food():
+    return (random.randint(0, GRID_WIDTH_NUM - 1),
+            random.randint(0, GRID_HEIGHT_NUM -1))
+
+def draw_food():
+    pygame.draw.rect(screen, GREEN,
+                     (food_pos[0] * CUBE_WIDTH,
+                      food_pos[1] * CUBE_WIDTH, CUBE_WIDTH, CUBE_WIDTH))
+
+def grow():
+    if snake_body[0][0] == food_pos[0] * CUBE_WIDTH and\
+            snake_body[0][1] == food_pos[1] * CUBE_WIDTH:
+        return True
+    return False
+
+
