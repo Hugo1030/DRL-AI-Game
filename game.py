@@ -198,10 +198,10 @@ def train_neural_network(input_image):
 			input_image_data = input_image_data1
 			n = n+1
  
-			# if n % 10000 == 0:
-			# 	saver.save(sess, 'models/' + GAME + '-dqn', global_step = n)  # 保存模型
+			if n % 10000 == 0:
+				saver.save(sess, 'models/' + GAME + '-dqn', global_step = n)  # 保存模型
  
-			# print(n, "epsilon:", epsilon, " " ,"action:", maxIndex, " " ,"reward:", reward)
+			print(n, "epsilon:", epsilon, " " ,"action:", maxIndex, " " ,"reward:", reward)
  
  
 train_neural_network(input_image)
