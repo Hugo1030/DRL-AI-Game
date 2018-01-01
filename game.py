@@ -139,10 +139,15 @@ def train_neural_network(input_image):
 	input_image_data = np.stack((image, image, image, image), axis = 2)
 	
 	with tf.Session() as sess:
-		sess.run(tf.global_variables_initializer())
-		
 		saver = tf.train.Saver()
-		
+		sess.run(tf.global_variables_initializer())
+		checkpoint = tf.train.get_checkpoint_state("model")
+		if checkpoint and checkpoint.model_checkpoint_path:
+		    saver.restore(sess, checkpoint.model_checkpoint_path)
+		    print("Successfully loaded:", checkpoint.model_checkpoint_path)
+		else:
+			print("Could not find old network weights")
+    				
 		n = 0
 		epsilon = INITIAL_EPSILON
 		while True:
@@ -192,10 +197,10 @@ def train_neural_network(input_image):
 			input_image_data = input_image_data1
 			n = n+1
  
-			if n % 10000 == 0:
-				saver.save(sess, './game.cpk', global_step = n)  # 保存模型
+			# if n % 10000 == 0:
+			# 	saver.save(sess, './game.cpk', global_step = n)  # 保存模型
  
-			print(n, "epsilon:", epsilon, " " ,"action:", maxIndex, " " ,"reward:", reward)
+			# print(n, "epsilon:", epsilon, " " ,"action:", maxIndex, " " ,"reward:", reward)
  
  
 train_neural_network(input_image)
