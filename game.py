@@ -21,7 +21,7 @@ MOVE_RIGHT = [0, 0, 1]
 class Game(object):
 	def __init__(self):
 		pygame.init()
-		#self.clock = pygame.time.Clock()
+		self.clock = pygame.time.Clock()
 		self.screen = pygame.display.set_mode(SCREEN_SIZE)
 		pygame.display.set_caption('Simple Game')
  
@@ -86,6 +86,7 @@ EXPLORE = 500000
 OBSERVE = 50000
 # 存储过往经验大小
 REPLAY_MEMORY = 500000
+GAME = 'SImpleGame'
  
 BATCH = 100
  
@@ -141,13 +142,13 @@ def train_neural_network(input_image):
 	with tf.Session() as sess:
 		saver = tf.train.Saver()
 		sess.run(tf.global_variables_initializer())
-		checkpoint = tf.train.get_checkpoint_state("model")
+		checkpoint = tf.train.get_checkpoint_state("models")
 		if checkpoint and checkpoint.model_checkpoint_path:
-		    saver.restore(sess, checkpoint.model_checkpoint_path)
-		    print("Successfully loaded:", checkpoint.model_checkpoint_path)
+			saver.restore(sess, checkpoint.model_checkpoint_path)
+			print("Successfully loaded:", checkpoint.model_checkpoint_path)
 		else:
 			print("Could not find old network weights")
-    				
+
 		n = 0
 		epsilon = INITIAL_EPSILON
 		while True:
@@ -197,10 +198,10 @@ def train_neural_network(input_image):
 			input_image_data = input_image_data1
 			n = n+1
  
-			# if n % 10000 == 0:
-			# 	saver.save(sess, './game.cpk', global_step = n)  # 保存模型
+			if n % 10000 == 0:
+				saver.save(sess, 'models/' + GAME + '-dqn', global_step = n)  # 保存模型
  
-			# print(n, "epsilon:", epsilon, " " ,"action:", maxIndex, " " ,"reward:", reward)
+			print(n, "epsilon:", epsilon, " " ,"action:", maxIndex, " " ,"reward:", reward)
  
  
 train_neural_network(input_image)

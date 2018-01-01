@@ -1,0 +1,6 @@
+model_checkpoint_path: "SImpleGame-dqn-50000"
+all_model_checkpoint_paths: "SImpleGame-dqn-10000"
+all_model_checkpoint_paths: "SImpleGame-dqn-20000"
+all_model_checkpoint_paths: "SImpleGame-dqn-30000"
+all_model_checkpoint_paths: "SImpleGame-dqn-40000"
+all_model_checkpoint_paths: "SImpleGame-dqn-50000"
